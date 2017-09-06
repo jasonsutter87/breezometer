@@ -2,52 +2,12 @@ import React from 'react';
 import SearchBar from './searchBar';
 import Swatch from './colorSwatch';
 import AirQualityColor from '../api/airQualityColor';
+import * as Actions from '../actions';
+import { connect } from 'react-redux';
 
 class App extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      address: '',
-      color: '',
-      description: 'no data',
-      errorMsg: '',
-      history: []
-    }
-    this.getColor = this.getColor.bind(this);
-    this.handleChangeAddress = this.handleChangeAddress.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  getColor(){
-    Promise.resolve(AirQualityColor(this.state.address)).then((result) => {
-      if(result === undefined) {
-        this.setState({
-          description: 'no data',
-          errorMsg: 'There was an error with the input.',
-          address: '',
-          color: ''
-        })
-      } else {
-        this.setState({
-          errorMsg: '',
-          color: result.breezoColor,
-          description:  result.breezoDescription,
-          history: this.state.history.concat([
-            {
-              color: result.breezoColor,
-              address: this.state.address,
-              description: result.breezoDescription
-            }
-          ])
-        })
-      }
-    })
-  }
-
   handleChangeAddress(event) {
-    this.setState({
-       [event.target.id]: event.target.value
-     });
+    this.props.changeAddress(event.target.value)
   }
 
   handleSubmit(event) {
@@ -55,28 +15,59 @@ class App extends React.Component{
     this.getColor()
   }
 
+  getColor() {
+    const historyLength = this.props.history.length - 1
+    Promise.resolve(AirQualityColor(this.props.history[historyLength].address))
+    .then((result) => {
+      if(result === undefined) {
+        console.log('ERROR ERROR')
+        this.props.changeDescription('no data')
+        this.props.changeErrorMessage('Error, the address or city was not inputted correctly')
+        this.props.changeAddress('')
+        this.props.changeColor('')
+
+      } else {
+        this.props.changeErrorMessage('')
+        this.props.changeColor(result.breezoColor)
+        this.props.changeAqi(result.breezoAqi)
+        this.props.changeDescription(result.breezoDescription)
+        this.props.addToHistory(this.props.address, result.breezoColor, result.breezoDescription, result.breezoAqi, this.props.errorMsg)
+      }
+    })
+  }
+  
   render() {
-      const moves = this.state.history.map((step, move) => {
-        const desc =  `${this.state.history[move].address}` + " " + `${this.state.history[move].color}`+ " " + `${this.state.history[move].description}`;
-        if(move >= 0){
+    const { history } = this.props;
+      const searchHistory = history.map((step, index) => {
+        const description =  `${history[index].address}${' '}${history[index].color}${' '}${history[index].description}${' '}${history[index].aqi}`;
+        if(index > 0){
           return (
-            <li key={move}>{desc}</li>
+            <li key={index}>{description}</li>
           );
         }
+        return searchHistory;
       });
-
 
     return (
       <div>
-        <p className="errorHandling">{this.state.errorMsg}</p>
-        <SearchBar onChange={this.handleChangeAddress} onSubmit={this.handleSubmit}/>
-        <p>Air Quality: {this.state.description}</p>
-        <Swatch value={this.state.color}/>
+        <p className="errorHandling">{this.props.errorMsg}</p>
+        <SearchBar onChange={(e) => this.handleChangeAddress(e)} onSubmit={(e) => this.handleSubmit(e)}/>
+        <p>Air Quality: {this.props.description}</p>
+        <Swatch value={this.props.color}/>
         <p>Search Results:</p>
-        <ul>{moves}</ul>
+        <ul>{searchHistory}</ul>
       </div>
     )
   };
 }
 
-export default App;
+function mapStateToProps (state){
+  return {
+    history: state.history
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  Actions
+)(App);
