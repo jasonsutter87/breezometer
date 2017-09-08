@@ -1,12 +1,121 @@
-#colorSwatch{
-  width: 3em;
-  height: 3em;
-  background-color: white;
+body{
+  background-color: #18263F;
+}
+
+.swatch{
+  text-align: center;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
   border-style: solid;
   border-color: black;
+  border-radius: 10px;
 }
 
 .errorHandling{
   text-align: center;
   background-color: rgba(255, 102, 102, 1);
+}
+
+
+.SearchBar {
+  text-align: center;
+  margin-right: 20%;
+  margin-left: 20%;
+  padding: 20px;
+  border-radius: 25px;
+  background-color: #FFFFFF;
+}
+
+
+.SearchResult {
+  font-family: 'Cormorant Garamond', serif;
+  text-align: center;
+  margin-top: 3%;
+  margin-right: 20%;
+  margin-left: 20%;
+  padding: 20px;
+  border-radius: 25px;
+  background-color: #FFFFFF;
+  font-weight: bold;
+  color: #4C586F;
+  font-size: 150%;
+}
+
+#MainTitle{
+  font-family: 'Oswald', sans-serif;
+  color: #4C586F;
+  font-weight: bold;
+  background-color: #FFFFFF;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+
+
+#MainSubTitle{
+  text-align: center;
+  background-color: #FFFFFF;
+  font-family: 'Cormorant Garamond', serif;
+  color: #4C586F;
+  padding-top: 10px;
+  margin-top: -20px;
+  padding-bottom: 30px;
+  font-style: italic;
+  font-size: 150%;
+}
+
+.SearchTitle{
+  font-family: 'Cormorant Garamond', serif;
+  color: #4C586F;
+  font-weight: bold;
+  font-size: 150%;
+}
+
+input{
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+background-color: #f2f2f2;
+}
+
+
+@media only screen and (max-width: 800px) {
+  #SearchResult {
+    font-size: 105%;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  #address {
+    width: 150px;
+  }
+
+  .SearchBar {
+    text-align: center;
+    margin-right: 2%;
+    margin-left: 2%;
+    padding: 20px;
+    border-radius: 25px;
+    background-color: #FFFFFF;
+  }
+
+
+  .SearchResult {
+    font-family: 'Cormorant Garamond', serif;
+    text-align: center;
+    margin-top: 3%;
+    margin-right: 2%;
+    margin-left: 2%;
+    padding: 20px;
+    border-radius: 25px;
+    background-color: #FFFFFF;
+    font-weight: bold;
+    color: #4C586F;
+    font-size: 100%;
+  }
+
+
 }

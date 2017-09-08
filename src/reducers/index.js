@@ -10,8 +10,8 @@ import {
 
 const initialState = {
   errorMsg: '',
-  history: [{
-  }],
+  address: '',
+  history: [],
 };
 
 

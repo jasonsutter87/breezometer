@@ -7,35 +7,35 @@ export const ADD_TO_HISTORY = 'ADD_TO_HISTORY';
 
 export function changeAddress(address) {
   return {
-    type: 'CHANGE_ADDRESS',
+    type: CHANGE_ADDRESS,
     address,
   };
 }
 
 export function changeColor(color) {
   return {
-    type: 'CHANGE_COLOR',
+    type: CHANGE_COLOR,
     color,
   };
 }
 
 export function changeDescription(description) {
   return {
-    type: 'CHANGE_DESCRIPTION',
+    type: CHANGE_DESCRIPTION,
     description,
   };
 }
 
 export function changeAqi(aqi) {
   return {
-    type: 'CHANGE_AQI',
+    type: CHANGE_AQI,
     aqi,
   };
 }
 
 export function changeErrorMessage(errorMsg) {
   return {
-    type: 'CHANGE_ERROR_MESSAGE',
+    type: CHANGE_ERROR_MESSAGE,
     errorMsg,
   };
 }

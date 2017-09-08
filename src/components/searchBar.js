@@ -2,12 +2,12 @@ import React from 'react';
 
 function SearchBar(props) {
     return (
-      <div>
+      <div className='SearchBar'>
         <form onSubmit={props.onSubmit}>
-          <label>
+          <label className="SearchTitle">
           Address or City:<br />
           <input onChange={props.onChange} id="address" type="text"/>
-          </label>
+          </label><br />
           <input type="submit" value="Submit" />
         </form>
       </div>
