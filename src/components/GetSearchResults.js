@@ -1,11 +1,12 @@
 import React from 'react';
 import SearchHistory from './SearchHistory';
+const uuidv4 = require('uuid/v4');
 
 function GetSearchResults(props) {
   const { history } = props;
   const searchHistory = history.slice(-5);
   return (
-  <div className="SearchResult">
+  <div className="search-result">
     <p>Past Search Results</p>
     <table style={{'width': '100%'}}>
       <thead>
@@ -19,7 +20,7 @@ function GetSearchResults(props) {
       <tbody>
         {searchHistory.map((item) =>
           <SearchHistory
-            key={JSON.stringify(Math.random())}
+            key={JSON.stringify(uuidv4())}
             address={item.address}
             color={item.color}
             description={item.description}

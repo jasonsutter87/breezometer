@@ -10,7 +10,7 @@ function GetCurrentSearchResult(props) {
     searchHistory = history.slice(history.length -1)
   }
   return (
-    <div className="SearchResult">
+    <div className="search-result">
       <p>Current Search Results</p>
       <table style={{'width': '100%'}}>
         <thead>

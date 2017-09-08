@@ -12,13 +12,13 @@ body{
   border-radius: 10px;
 }
 
-.errorHandling{
+.error-handling{
   text-align: center;
   background-color: rgba(255, 102, 102, 1);
 }
 
 
-.SearchBar {
+.search-bar {
   text-align: center;
   margin-right: 20%;
   margin-left: 20%;
@@ -28,7 +28,7 @@ body{
 }
 
 
-.SearchResult {
+.search-result {
   font-family: 'Cormorant Garamond', serif;
   text-align: center;
   margin-top: 3%;
@@ -42,7 +42,7 @@ body{
   font-size: 150%;
 }
 
-#MainTitle{
+#main-title{
   font-family: 'Oswald', sans-serif;
   color: #4C586F;
   font-weight: bold;
@@ -54,7 +54,7 @@ body{
 
 
 
-#MainSubTitle{
+#main-subtitle{
   text-align: center;
   background-color: #FFFFFF;
   font-family: 'Cormorant Garamond', serif;
@@ -66,7 +66,7 @@ body{
   font-size: 150%;
 }
 
-.SearchTitle{
+.search-title{
   font-family: 'Cormorant Garamond', serif;
   color: #4C586F;
   font-weight: bold;
@@ -82,7 +82,7 @@ background-color: #f2f2f2;
 
 
 @media only screen and (max-width: 800px) {
-  #SearchResult {
+  .search-result {
     font-size: 105%;
   }
 }
@@ -93,7 +93,7 @@ background-color: #f2f2f2;
     width: 150px;
   }
 
-  .SearchBar {
+  .search-bar {
     text-align: center;
     margin-right: 2%;
     margin-left: 2%;
@@ -103,7 +103,7 @@ background-color: #f2f2f2;
   }
 
 
-  .SearchResult {
+  .search-result {
     font-family: 'Cormorant Garamond', serif;
     text-align: center;
     margin-top: 3%;

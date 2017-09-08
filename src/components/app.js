@@ -12,7 +12,7 @@ class App extends React.Component{
     this.handleChangeAddress = this.handleChangeAddress.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   handleChangeAddress(event) {
     this.props.changeAddress(event.target.value)
   }
@@ -38,12 +38,12 @@ class App extends React.Component{
     const { history, errorMsg } = this.props;
     return (
     <div>
-      <div className="TitleBar">
-        <h1 id="MainTitle">Clean Air</h1>
-        <h1 id="MainSubTitle">Your air matters</h1>
+      <div className="title-bar">
+        <h1 id="main-title">Clean Air</h1>
+        <h1 id="main-subtitle">Your air matters</h1>
       </div>
       <div>
-        <p className="errorHandling">{errorMsg}</p>
+        <p className="error-handling">{errorMsg}</p>
       </div>
       <div>
         <SearchBar
@@ -74,3 +74,6 @@ export default connect(
   mapStateToProps,
   Actions
 )(App);
+
+
+//

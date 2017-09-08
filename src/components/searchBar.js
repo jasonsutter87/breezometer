@@ -2,9 +2,9 @@ import React from 'react';
 
 function SearchBar(props) {
     return (
-      <div className='SearchBar'>
+      <div className='search-bar'>
         <form onSubmit={props.onSubmit}>
-          <label className="SearchTitle">
+          <label className="search-title">
           Address or City:<br />
           <input onChange={props.onChange} id="address" type="text"/>
           </label><br />
