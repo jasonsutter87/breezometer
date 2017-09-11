@@ -8,7 +8,7 @@ function SearchBar(props) {
           Address or City:<br />
           <input onChange={props.onChange} id="address" type="text"/>
           </label><br />
-          <input type="submit" value="Submit" />
+          <button type="submit">Submit</button>
         </form>
       </div>
     )

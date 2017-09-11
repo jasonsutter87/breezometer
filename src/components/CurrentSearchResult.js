@@ -1,24 +1,22 @@
 import React from 'react';
 import SearchHistory from './SearchHistory';
 
-function GetCurrentSearchResult(props) {
-  const { history } = props;
-  let searchHistory;
-  if(history.length < 6) {
-     searchHistory = history.slice(history.length -1, history.length);
-  } else {
-    searchHistory = history.slice(history.length -1)
-  }
+function CurrentSearchResult(props) {
+  const { history, errorMsg } = props;
+  const searchHistory = history.slice(0,1);
   return (
     <div className="search-result">
-      <p>Current Search Results</p>
+      <div>
+        <p className="error-handling">{errorMsg}</p>
+      </div>
+      <p className="table-title">Current Search Results</p>
       <table style={{'width': '100%'}}>
         <thead>
           <tr>
-            <th>Location</th>
-            <th>Air Quality Color</th>
-            <th>Air Quality Description</th>
-            <th>Air Quality Index</th>
+            <th className='center'>Location</th>
+            <th className='center'>Air Quality Index</th>
+            <th className='center'>Air Quality Color</th>
+            <th className='center'>Air Quality Description</th>
           </tr>
         </thead>
         <tbody>
@@ -38,4 +36,4 @@ function GetCurrentSearchResult(props) {
   )
 };
 
-export default GetCurrentSearchResult;
+export default CurrentSearchResult;

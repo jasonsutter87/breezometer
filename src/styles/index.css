@@ -1,7 +1,9 @@
 body{
   background-color: #18263F;
 }
-
+.center{
+  text-align: center;
+}
 .swatch{
   text-align: center;
   display: inline-block;
@@ -80,6 +82,12 @@ border-radius: 5px;
 background-color: #f2f2f2;
 }
 
+
+.table-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: bold;
+  font-size: 125%;
+}
 
 @media only screen and (max-width: 800px) {
   .search-result {

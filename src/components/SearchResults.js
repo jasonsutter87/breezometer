@@ -2,19 +2,19 @@ import React from 'react';
 import SearchHistory from './SearchHistory';
 const uuidv4 = require('uuid/v4');
 
-function GetSearchResults(props) {
+function SearchResults(props) {
   const { history } = props;
   const searchHistory = history.slice(-5);
   return (
   <div className="search-result">
-    <p>Past Search Results</p>
+    <p className="table-title">Past Search Results</p>
     <table style={{'width': '100%'}}>
       <thead>
         <tr>
-          <th>Location</th>
-          <th>Air Quality Color</th>
-          <th>Air Quality Description</th>
-          <th>Air Quality Index</th>
+          <th className='center'>Location</th>
+          <th className='center'>Air Quality Index</th>
+          <th className='center'>Air Quality Color</th>
+          <th className='center'>Air Quality Description</th>
         </tr>
       </thead>
       <tbody>
@@ -34,4 +34,4 @@ function GetSearchResults(props) {
   )
 };
 
-export default GetSearchResults;
+export default SearchResults;

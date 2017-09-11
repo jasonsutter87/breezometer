@@ -1,8 +1,8 @@
 import React from 'react';
 import SearchBar from './searchBar';
-import GetSearchResults from './GetSearchResults';
-import GetCurrentSearchResult from './GetCurrentSearchResult';
-import AirQualityColor from '../api/airQualityColor';
+import SearchResults from './SearchResults';
+import CurrentSearchResult from './CurrentSearchResult';
+import AirQualityResult from '../api/AirQualityResult';
 import * as Actions from '../actions';
 import { connect } from 'react-redux';
 
@@ -14,23 +14,33 @@ class App extends React.Component{
   }
 
   handleChangeAddress(event) {
+    if(this.props.errorMsg.length !== 0){
+      this.props.changeErrorMessage('')
+    }
     this.props.changeAddress(event.target.value)
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.getColor()
+    if(this.props.address !== ''){
+      this.getColor()
+    }
   }
 
   getColor() {
-    const historyLength = this.props.history.length - 1
-    Promise.resolve(AirQualityColor(this.props.address))
+    Promise.resolve(AirQualityResult(this.props.address))
     .then((result) => {
+      if ( result === undefined) {
+        this.props.changeErrorMessage('Error, There was a problem with your input.')
+      } else if (result === 'off-line') {
+          this.props.changeErrorMessage('Error, Can not make requests while offline.')
+      } else if (result === 'locationError') {
+          this.props.changeErrorMessage('Error, Provided location is unsupported.')
+      } else {
         this.props.changeErrorMessage('')
-        this.props.changeColor(result.breezoColor)
-        this.props.changeAqi(result.breezoAqi)
-        this.props.changeDescription(result.breezoDescription)
-        this.props.addToHistory(this.props.address, result.breezoColor, result.breezoDescription, result.breezoAqi, this.props.errorMsg)
+        this.props.fetchAirQualitySuccess(result.breezoColor, result.breezoDescription, result.breezoAqi)
+        this.props.addToHistory(this.props.address, result.breezoColor, result.breezoDescription, result.breezoAqi)
+      }
     })
   }
 
@@ -43,19 +53,19 @@ class App extends React.Component{
         <h1 id="main-subtitle">Your air matters</h1>
       </div>
       <div>
-        <p className="error-handling">{errorMsg}</p>
-      </div>
-      <div>
         <SearchBar
           onChange={this.handleChangeAddress}
           onSubmit={this.handleSubmit}
         />
       </div>
       <div>
-         <GetCurrentSearchResult history={history} />
+        <CurrentSearchResult
+          errorMsg={errorMsg}
+          history={history}
+        />
       </div>
       <div>
-         <GetSearchResults history={history} />
+         <SearchResults history={history} />
       </div>
     </div>
     )
@@ -74,6 +84,3 @@ export default connect(
   mapStateToProps,
   Actions
 )(App);
-
-
-//

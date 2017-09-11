@@ -1,41 +1,35 @@
 import {
   CHANGE_ADDRESS,
-  CHANGE_COLOR,
-  CHANGE_DESCRIPTION,
-  CHANGE_AQI,
   CHANGE_ERROR_MESSAGE,
+  FETCH_AIR_QUALITY_SUCCESS,
   ADD_TO_HISTORY,
-} from '../actions';
-
+} from '../constants';
 
 const initialState = {
-  errorMsg: '',
   address: '',
+  errorMsg: '',
   history: [],
 };
 
-
 function BreezoReducer(state = initialState, action) {
-  switch (action.type) {
+  const { address, color, aqi, description, errorMsg, type } = action;
+  switch (type) {
     case CHANGE_ADDRESS:
-      return Object.assign({}, state, { address: action.address });
-    case CHANGE_COLOR:
-      return Object.assign({}, state, { color: action.color });
-    case CHANGE_DESCRIPTION:
-      return Object.assign({}, state, { description: action.description });
-    case CHANGE_AQI:
-      return Object.assign({}, state, { aqi: action.aqi });
+      return Object.assign({}, state, { address });
+    case FETCH_AIR_QUALITY_SUCCESS:
+      return Object.assign({}, state, { description }, { color }, { aqi });
     case CHANGE_ERROR_MESSAGE:
-      return Object.assign({}, state, { errorMsg: action.errorMsg });
+      return Object.assign({}, state, { errorMsg });
     case ADD_TO_HISTORY:
-      return Object.assign({}, state, { history: state.history.concat([{
-        address: state.address,
-        color: state.color,
-        description: state.description,
-        aqi: state.aqi,
-        errorMsg: state.errorMsg,
-      }])
-      });
+      return {
+        ...state,
+        history: [{
+          address: state.address,
+          color,
+          aqi,
+          description,
+        }, ...state.history],
+      };
     default:
       return state;
   }
